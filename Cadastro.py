@@ -45,15 +45,18 @@ tipo = st.selectbox("Tipo de cliente:",
 if tipo == "Pessoa Fisica":
     id = st.text_input("Digite o CPF:",
                          key="cpf",
-                         max_chars=11)
-    id = id[:3]+"."+id[3:6]+"."+id[6:9]+"-"+id[9:]
-    st.text(id)
+                         max_chars=14,
+                         format=id[:3]+"."+id[3:6]+"."+id[6:9]+"-"+id[9:])
+    if id:
+        id = id[:3]+"."+id[3:6]+"."+id[6:9]+"-"+id[9:]
+        st.text(id)
 elif tipo == "Pessoa Juridica":
     id = st.text_input("Digite o CNPJ:",
                          key="cnpj",
                          max_chars=14)
-    id=id[:2]+"."+id[2:5]+"."+id[5:8]+"/"+id[8:12]+"-"+id[12:14]
-    st.text(id)
+    if id:
+        id=id[:2]+"."+id[2:5]+"."+id[5:8]+"/"+id[8:12]+"-"+id[12:14]
+        st.text(id)
 
 btn_bot = st.button("Cadastrar",
                     on_click=gravar_dados,
